@@ -11,8 +11,14 @@ class HomeController extends Controller
 
         if ($userType == '1') {
             return view('admin.home');
+        } else if ($userType == '0') {
+            return view('user.home');
         } else {
-            return view('dashboard');
+            return "user type error!";
         }
+    }
+
+    public function index() {
+        return view('user.home');
     }
 }
