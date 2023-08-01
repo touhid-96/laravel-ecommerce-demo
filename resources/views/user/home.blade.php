@@ -67,7 +67,7 @@
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         @if (Route::has('login'))
                             @auth
                                 <li class="nav-link">
@@ -85,7 +85,32 @@
                                 @endif
                             @endauth
                         @endif
-                    </li>
+                    </li> -->
+
+                    <!-- Logout Button -->
+                    @auth
+                        <!-- Show logout button for authenticated users -->
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="nav-link" style="border: none; background: none; cursor: pointer; color: #fff;">Logout</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/user/profile') }}">Profile</a>
+                        </li>
+                    @else
+                        <!-- Show login and register links for guests -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Log in</a>
+                        </li>
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
             </div>
         </div>
