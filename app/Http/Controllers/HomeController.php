@@ -17,6 +17,18 @@ class HomeController extends Controller
     }
 
     public function index() {
-        return view('user.home');
+        /**
+         * Quick explanation:
+         * we are starting form index method.
+         * after going through login/registration -> we are calling redirect method
+         * that's why we need to redirect the route here
+         *
+         * Auth::id() means : check if someone logged in or not
+         */
+        if (Auth::id()) {
+            return redirect('redirect');
+        } else {
+            return view('user.home');
+        }
     }
 }

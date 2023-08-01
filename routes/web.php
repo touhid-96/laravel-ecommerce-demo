@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 route::get('/redirect', [HomeController::class, 'redirect']);
 route::get('/', [HomeController::class, 'index']);
+route::get('/products', [AdminController::class, 'products']);
+route::post('/upload_product', [AdminController::class, 'uploadProduct']);
