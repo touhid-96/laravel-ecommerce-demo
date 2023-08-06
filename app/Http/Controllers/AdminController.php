@@ -42,4 +42,53 @@ class AdminController extends Controller
         $data->save();  //this line saves the object to the database [inserts a new record]
         return redirect()->back()->with('message', 'Product added successfully');
     }
+
+    public function showProduct() {
+        $data = Product::all();
+
+        return view('admin.show-product', compact('data'));
+    }
+
+    public function deleteProduct($id) {
+        $data = Product::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('message', 'Product deleted');
+    }
+
+    public function updateProductShow($id) {
+        $data = Product::find($id);
+
+        return view('admin.update-product', compact('data'));
+    }
+
+    public function updateProduct(Request $request, $id) {
+        $data = Product::find($id);
+
+        $image = $request->file;
+        if ($image) {
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+
+            /**
+             * (1) moving the file [image] to 'product_image' directory within the project
+             * (2) assign the file name to the 'image' property of the 'data' object [Product type] and will be sent to db later on
+             *
+             * so that we can use the unique name [from db] as a reference to access the actual image file in the 'product_image' directory
+             */
+            $request->file->move('product_image', $imageName);
+            $data->image = $imageName;
+        }
+
+        /**
+         * $request->description
+         * it is coming from name property of the form
+         */
+        $data->title = $request->title;
+        $data->price = $request->price;
+        $data->description = $request->description;
+        $data->quantity = $request->quantity;
+
+        $data->save();  //this line saves the object to the database [inserts a new record]
+        return redirect()->back()->with('message', 'Product updated successfully');
+    }
 }

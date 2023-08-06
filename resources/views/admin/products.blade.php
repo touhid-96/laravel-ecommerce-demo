@@ -17,9 +17,8 @@
 </head>
 <body>
 @include('admin.sidebar')
-<!-- partial -->
 @include('admin.navbar')
-<!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
         <div class="container" align="center">
             <h1 class="title">
@@ -28,7 +27,9 @@
 
             @if(session()->has('message'))
                 <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     {{ session()->get('message') }}
                 </div>
             @endif
@@ -66,7 +67,7 @@
             </form>
         </div>
     </div>
-<!-- partial -->
+
 @include('admin.script')
 </body>
 </html>

@@ -29,3 +29,7 @@ route::get('/redirect', [HomeController::class, 'redirect']);
 route::get('/', [HomeController::class, 'index']);
 route::get('/products', [AdminController::class, 'products']);
 route::post('/upload_product', [AdminController::class, 'uploadProduct']);
+route::get('/show_products', [AdminController::class, 'showProduct']);
+route::get('/delete_product/{id}', [AdminController::class, 'deleteProduct']);
+route::get('/update_product_show/{id}', [AdminController::class, 'updateProductShow']);
+route::post('/update_product/{id}', [AdminController::class, 'updateProduct']);
