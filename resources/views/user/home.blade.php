@@ -94,6 +94,16 @@
             </div>
         </div>
     </nav>
+
+    @if(session()->has('message'))
+        <div class="alert alert-success" style="width: 400px; margin: 0 auto" align="center">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
 </header>
 
 <!-- Page Content -->
